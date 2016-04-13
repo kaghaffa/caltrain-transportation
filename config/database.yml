@@ -1,13 +1,13 @@
 development:
   adapter: postgresql
-  database: meetup-planner
+  database: public-transport
   pool: 5
   timeout: 5000
-  username: ribbon
+  username: kayvonghaffari
 
 test:
   adapter: postgresql
-  database: meetup-planner-test
+  database: public-transport-test
   pool: 5
   timeout: 5000
-  username: ribbon
+  username: kayvonghaffari
