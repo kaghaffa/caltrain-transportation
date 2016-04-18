@@ -20,12 +20,15 @@ namespace :load do
       next unless csv_obj['departure_time'] < "24:00:00"
       next if csv_obj['trip_id'].include?('PresDay')
 
+      trip_id, schedule_name = csv_obj['trip_id'].scan(/(\d+)-.*CT-(.*)/).flatten
+
       begin
         StopTime.create!(
           stop_id: csv_obj['stop_id'],
           arrival_time: csv_obj['arrival_time'],
           departure_time: csv_obj['departure_time'],
-          schedule_name: csv_obj['trip_id'].split('CT-').last
+          schedule_name: schedule_name,
+          trip_id: trip_id,
         )
       rescue Exception => e
         puts csv_obj.inspect

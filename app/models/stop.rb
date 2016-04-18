@@ -3,7 +3,6 @@ class Stop < ActiveRecord::Base
 
   class << self
     def unique_stops
-      # self.all.
     end
   end # Class Methods
 end

@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20160412063214) do
     t.time     "arrival_time",   null: false
     t.time     "departure_time", null: false
     t.integer  "stop_id",        null: false
+    t.integer  "trip_id",        null: false
     t.string   "schedule_name",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -14,7 +14,7 @@ define([
           <div className="container-fluid">
             <div className="navbar-header">
               <a className="navbar-brand" href="#">
-                Muni Public Transportation
+                Caltrain Public Transportation
               </a>
             </div>
           </div>

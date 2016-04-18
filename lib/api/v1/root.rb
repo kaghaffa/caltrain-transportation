@@ -39,6 +39,6 @@ module API::V1
 
     ##
     # Resources
-    mount API::V1::Resources::Caltrain
+    mount API::V1::Resources::Stops
   end
 end
