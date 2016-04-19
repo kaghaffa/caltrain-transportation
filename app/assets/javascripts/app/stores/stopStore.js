@@ -48,6 +48,7 @@ define([
           StopStore.emitChange();
           break;
         case StopConstants.GET_STOP_TIMES_SUCCESS:
+          _setStopTimes(action.response.trips);
           StopStore.emitChange();
           break;
       }

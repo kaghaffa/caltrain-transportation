@@ -28,7 +28,6 @@ define([
     _stopDirection: function(departingStop, arrivingStop) {
       var departingStopIndex = this.props.stopNames.indexOf(departingStop);
       var arrivingStopIndex = this.props.stopNames.indexOf(arrivingStop);
-      console.log(departingStopIndex)
       if (departingStopIndex < arrivingStopIndex) {
         return "SB";
       } else if (departingStopIndex > arrivingStopIndex) {
@@ -52,7 +51,6 @@ define([
     },
 
     render: function() {
-      console.log(this.props)
       var stationOptions = this.props.stops.map(function(stop, index) {
         return <option key={ index } value={ stop[0] }>{ stop[0] }</option>
       });

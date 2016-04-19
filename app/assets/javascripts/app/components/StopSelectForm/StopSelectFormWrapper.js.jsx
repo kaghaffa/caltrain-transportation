@@ -36,12 +36,12 @@ define([
     render: function() {
       if (_.isEmpty(this.state.stops)) {
         return (
-          <Loading />
+          <h5>Loading</h5>
         );
       }
 
       return (
-        <div className="stop-select-form-wrapper">
+        <div className="stop-select-form-wrapper row">
           <StopSelectFormHeader />
           <StopSelectFormContent
             stops={ this.state.stops }
