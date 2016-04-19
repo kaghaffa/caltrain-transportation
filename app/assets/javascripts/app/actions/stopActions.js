@@ -34,12 +34,13 @@ define([
         })
     },
 
-    getStopTimes: function(stopId, scheduleName) {
+    getStopTimes: function(departingStopId, arrivingStopId, scheduleName) {
       var params = RequestUtils.createQueryParams({
-        schedule_name: scheduleName
+        schedule_name: scheduleName,
+        arriving_stop_id: arrivingStopId
       });
 
-      fetch('/api/v1/stops/' + stopId + '/stop_times?' + params)
+      fetch('/api/v1/stops/' + departingStopId + '/stop_times?' + params)
         .then(function(response) {
           if (response.status >= 200 && response.status < 300) {
 

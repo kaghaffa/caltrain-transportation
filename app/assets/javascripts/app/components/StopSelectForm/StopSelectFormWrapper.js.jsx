@@ -43,7 +43,10 @@ define([
       return (
         <div className="stop-select-form-wrapper">
           <StopSelectFormHeader />
-          <StopSelectFormContent stops={ this.state.stops } />
+          <StopSelectFormContent
+            stops={ this.state.stops }
+            stopNames={ this.state.stops.map(function(s) { return s[0]; } ) }
+          />
         </div>
       );
     }

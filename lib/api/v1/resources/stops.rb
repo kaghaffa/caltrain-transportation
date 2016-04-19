@@ -15,6 +15,7 @@ module API::V1::Resources
           a
         end
         .reject { |_,v| v.size < 2 }
+        .to_a
 
         present stops
       end
@@ -23,13 +24,16 @@ module API::V1::Resources
         namespace 'stop_times' do
           # GET /api/v1/stops/:id/stop_times
           params do
-            requires :schedule_name, type: String
-            requires :departing_stop, type: String
-            requires :arriving_stop, type: String
+            requires :schedule_name,  type: String
+            requires :arriving_stop_id,  type: String
+            optional :time_of_day,    type: String
           end
           get do
-            stop = Stop.where(stop_id: params[:id]).first
-            error!(:stop_not_found) unless stop
+            departing_stop = Stop.where(stop_id: params[:id]).first
+            error!(:stop_not_found) unless departing_stop
+
+            arriving_stop = Stop.where(stop_id: params[:arriving_stop_id]).first
+            error!(:arriving_stop_not_found) unless arriving_stop
 
             schedule_name = case params[:schedule_name]
             when 'weekday'
@@ -40,9 +44,22 @@ module API::V1::Resources
               'Caltrain-Sunday-02'
             end
 
-            stop_times = stop.stop_times.where(schedule_name: schedule_name)
+            trip_info = departing_stop.stop_times
+              .where(schedule_name: schedule_name)
               .sort_by { |st| st.arrival_time }
-            present stop_times, with: API::V1::Entities::StopTime
+              .map(&:trip_id)
+              .select do |trip_id|
+                StopTime.trip_has_stop?(trip_id, arriving_stop.stop_id)
+              end
+              .map do |trip_id|
+                StopTime.trip_stop_info(
+                  trip_id,
+                  params[:id],
+                  params[:arriving_stop_id]
+                )
+              end
+
+            present({ trips: trip_info })
           end
         end
       end # :id
