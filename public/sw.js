@@ -20,7 +20,7 @@ self.addEventListener('activate', function(event) {
     caches.keys().then(function(cacheNames) {
       cacheNames.filter(function(cacheName) {
         return cacheName.startsWith('public-transport-') &&
-          !allCaches.include(cacheName);
+          !allCaches.includes(cacheName);
       }).map(function(cacheName) {
         return caches.delete(cacheName);
       });
