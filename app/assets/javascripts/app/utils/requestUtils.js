@@ -9,7 +9,6 @@ define([], function() {
        .join("&")
        .replace(/%20/g, "+");
 
-      console.log(params)
       return params;
     }
 

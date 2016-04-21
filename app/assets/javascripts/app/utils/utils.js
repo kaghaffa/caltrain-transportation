@@ -1,7 +1,7 @@
 define([], function() {
   return {
 
-    convertSecondsToReadable: function test(seconds) {
+    convertSecondsToReadable: function (seconds) {
       var hours = 0;
       var minutes = 0;
 

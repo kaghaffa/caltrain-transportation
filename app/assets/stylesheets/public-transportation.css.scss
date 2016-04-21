@@ -21,7 +21,23 @@ body {
   }
 }
 
-.stop-time-card {
-  padding-left: 15px;
-  padding-right: 15px;
+.stop-times-table-content {
+  h4 {
+    padding-bottom: 15px;
+  }
+
+  .stop-time-card {
+    padding-left: 15px;
+    padding-right: 15px;
+
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+
+    &:hover {
+      box-shadow: #a8afb5 1px 3px 5px;
+    }
+  }
 }

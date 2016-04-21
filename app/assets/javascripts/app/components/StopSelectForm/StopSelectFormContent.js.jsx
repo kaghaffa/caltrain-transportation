@@ -56,8 +56,8 @@ define([
       });
 
       return (
-        <div className="stop-select-form-content col-md-10 col-md-offset-1 well">
-          <form>
+        <div className="stop-select-form-content col-md-10 col-md-offset-1">
+          <form className="well">
             <div className="row">
               <div className="col-md-6 form-group">
                 <label htmlFor="departureStation">Departing</label>
@@ -84,12 +84,16 @@ define([
               </div>
             </div>
 
-            <button
-              type="submit"
-              onClick={ this._onFormSubmit }
-              className="btn btn-success pull-right">
-              Search
-            </button>
+            <div className="row">
+              <div className="col-md-12">
+                <button
+                  type="submit"
+                  onClick={ this._onFormSubmit }
+                  className="btn btn-success pull-right">
+                  Search
+                </button>
+              </div>
+            </div>
           </form>
         </div>
       );

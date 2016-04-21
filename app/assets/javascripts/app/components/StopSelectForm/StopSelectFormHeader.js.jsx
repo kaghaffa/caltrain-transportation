@@ -8,7 +8,6 @@ define([
     render: function() {
       return (
         <div className="stop-select-form-header">
-          <h3>Select stops</h3>
         </div>
       );
     }
