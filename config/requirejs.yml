@@ -12,6 +12,7 @@ paths:
   'moment'            : 'moment/min/moment-with-locales.min'
   'react-bootstrap'   : 'react-bootstrap/react-bootstrap'
   'bootstrap'         : 'bootstrap/bootstrap'
+  'idb'               : 'idb/idb'
 
 shim:
   'react-router-shim':
@@ -27,3 +28,5 @@ shim:
     deps: ['jquery']
   'react-bootstrap':
     deps: ['bootstrap']
+  'idb':
+    exports: 'idb'
