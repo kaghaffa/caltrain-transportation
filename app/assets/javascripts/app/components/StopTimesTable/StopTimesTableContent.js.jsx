@@ -11,9 +11,9 @@ define([
     },
 
     render: function() {
-      var stopTimeCards = this.props.stopTimes.map(function(stopTime) {
+      var stopTimeCards = this.props.stopTimes.map(function(stopTime, index) {
         return(
-          <div className="col-md-4 col-sm-6">
+          <div key={ index } className="col-md-4 col-sm-6">
             <div className="stop-time-card panel panel-body">
               <p>Departs: { stopTime.departing_time }</p>
               <p>Arrives: { stopTime.arriving_time }</p>

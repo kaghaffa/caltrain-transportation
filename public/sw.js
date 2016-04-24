@@ -1,4 +1,4 @@
-var staticCacheName = 'public-transport-v3';
+var staticCacheName = 'public-transport-v4';
 var allCaches = [staticCacheName];
 
 self.addEventListener('install', function(event) {
@@ -27,24 +27,26 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
-  console.log("FETCH")
   var request = event.request;
   var requestUrl = new URL(request.url);
-  console.log(requestUrl)
 
   if (requestUrl.origin === location.origin) {
-    if (requestUrl.pathname.startsWith('/assets/')) {
+    if (requestUrl.pathname === '/' || requestUrl.pathname.startsWith('/assets/')) {
       return caches.open(staticCacheName).then(function(cache) {
         return cache.match(requestUrl).then(function(response) {
-          if (response) return response;
+          if (response) {
+            return response;
+          }
 
           return fetch(request).then(function(networkResponse) {
-            cache.put(requesetUrl, networkResponse.clone());
+            cache.put(requestUrl, networkResponse.clone());
             return networkResponse;
           });
         });
       });
     }
+
+    console.log("NONEXISTENT: ", request.url)
   }
 
   event.respondWith(caches.match(event.request).then(function (response) {

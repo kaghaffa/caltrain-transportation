@@ -13,7 +13,7 @@ define([], function() {
     _registerServiceWorker: function() {
       if (!navigator.serviceWorker) return;
 
-      navigator.serviceWorker.register('assets/app/sw.js').then(function(worker) {});
+      navigator.serviceWorker.register('/sw.js').then(function(worker) {});
     }
   }
 });
