@@ -1,4 +1,4 @@
-var staticCacheName = 'public-transport-v4';
+var staticCacheName = 'public-transport-v1';
 var allCaches = [staticCacheName];
 
 self.addEventListener('install', function(event) {
@@ -32,7 +32,6 @@ self.addEventListener('activate', function(event) {
 self.addEventListener('fetch', function(event) {
   var request = event.request;
   var requestUrl = new URL(request.url);
-    console.log(requestUrl.pathname)
 
   if (requestUrl.origin === location.origin) {
     if (requestUrl.pathname === '/' || requestUrl.pathname.startsWith('/assets/')) {
@@ -47,7 +46,6 @@ self.addEventListener('fetch', function(event) {
             }
             return networkResponse;
           }).catch(function(error) {
-            console.log("There is no Internet connection");
             return caches.match('offline.html');
           });
         });

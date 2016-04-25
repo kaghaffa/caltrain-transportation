@@ -39,10 +39,8 @@ define([
 
     store: function(key, value) {
       this.dbPromise().then(function(db) {
-        console.log("DB: ", db)
         if (!db) return;
 
-        console.log("STORING", key, value)
         var tx = db.transaction('public-transport-store', 'readwrite');
         var store = tx.objectStore('public-transport-store');
         store.put(value, key)
