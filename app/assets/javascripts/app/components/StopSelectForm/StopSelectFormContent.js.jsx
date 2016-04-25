@@ -42,6 +42,7 @@ define([
 
     _onFormSubmit: function(e) {
       e.preventDefault();
+      if (this.state.departureStation === this.state.arrivalStation) return;
 
       var stopDirection = this._stopDirection(this.state.departureStation, this.state.arrivalStation);
       var departingStopId = this._stopIdOf(this.state.departureStation, stopDirection)

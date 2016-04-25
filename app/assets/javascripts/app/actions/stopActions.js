@@ -14,7 +14,6 @@ define([
       // Fetch from IDB first to see if it exists
       idbUtils.find(requestUrl).then(function(dbResult) {
         if (dbResult) {
-          console.log("GETTING STOPS FROM DB", dbResult)
           Dispatcher.handleServerAction({
             type: StopConstants.GET_STOPS_SUCCESS, response: dbResult
           });
@@ -60,7 +59,6 @@ define([
       // Fetch from IDB first to see if it exists
       idbUtils.find(requestUrl).then(function(dbResult) {
         if (dbResult) {
-          console.log("GETTING STOP TIMES FROM DB", dbResult)
           Dispatcher.handleServerAction({
             type: StopConstants.GET_STOP_TIMES_SUCCESS, response: dbResult
           });
