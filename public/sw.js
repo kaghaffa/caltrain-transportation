@@ -36,16 +36,9 @@ self.addEventListener('fetch', function(event) {
 
   if (requestUrl.origin === location.origin) {
     if (requestUrl.pathname === '/' || requestUrl.pathname.startsWith('/assets/')) {
-      return caches.open(staticCacheName).then(function(cache) {
+      event.respondWith(caches.open(staticCacheName).then(function(cache) {
         return cache.match(requestUrl).then(function(response) {
-          if (response) {
-            if (requestUrl.pathname === '/') {
-            console.log("1")
-              response.text().then(function(res) { console.log(res) })
-            }
-
-            return response;
-          }
+          if (response) { return response; }
 
           return fetch(request).then(function(networkResponse) {
             if (networkResponse.status < 400) {
@@ -58,7 +51,9 @@ self.addEventListener('fetch', function(event) {
             return caches.match('offline.html');
           });
         });
-      });
+      }));
+
+      return;
     }
   }
 
